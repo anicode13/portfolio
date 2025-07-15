@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #f7f7f7;
+  --bg-secondary: #fff;
+  --text-primary: #222;
+  --text-secondary: #555;
+  --shadow-light: rgba(0,0,0,0.06);
+  --shadow-medium: rgba(0,0,0,0.10);
+  --shadow-dark: rgba(0,0,0,0.08);
+}
+
+[data-theme="dark"] {
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #2a2a2a;
+  --text-primary: #f0f0f0;
+  --text-secondary: #b0b0b0;
+  --shadow-light: rgba(0,0,0,0.3);
+  --shadow-medium: rgba(0,0,0,0.4);
+  --shadow-dark: rgba(0,0,0,0.5);
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Minimalistic button */
+.play-pause-button {
+  background: var(--bg-secondary);
+  border: none;
+  border-radius: 2.5rem;
+  box-shadow: 0 2px 12px 0 var(--shadow-light);
+  padding: 2.2rem 2.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.15s, background-color 0.3s;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.play-pause-button:hover {
+  box-shadow: 0 4px 24px 0 var(--shadow-medium);
+  transform: translateY(-2px) scale(1.04);
+}
+
+.play-pause-button:active {
+  box-shadow: 0 2px 8px 0 var(--shadow-dark);
+  transform: scale(0.98);
+}
+
+/* SVG icon styling */
+.play-pause-icon {
+  width: 3.5rem;
+  height: 3.5rem;
+  color: var(--text-primary);
+  transition: color 0.2s;
+}
+.play-pause-button:hover .play-pause-icon {
+  color: var(--text-secondary);
+}
+
+/* Remove animated-bg and ripple styles */
+.animated-bg, .ripple {
+  display: none !important;
+}
