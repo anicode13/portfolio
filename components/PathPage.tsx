@@ -98,8 +98,13 @@ const AirplanesPage: React.FC = () => {
           const view = this.views[ii];
           const camera = view.camera;
           camera.aspect = this.w / this.h;
-          let camZ = (window.screen.width - (this.w * 1)) / 3;
-          camera.position.z = camZ < 180 ? 180 : camZ;
+          // Use a larger z value for small screens to "zoom out"
+          if (window.innerWidth < 600) {
+            camera.position.z = 320; // or try 350, adjust as needed
+          } else {
+            let camZ = (window.screen.width - (this.w * 1)) / 3;
+            camera.position.z = camZ < 180 ? 180 : camZ;
+          }
           camera.updateProjectionMatrix();
         }
         this.renderer.setSize(this.w, this.h);
@@ -514,6 +519,10 @@ Currently diving into: LLMs, AI agents, and building smart systems.</p>
           pointer-events: none;
           visibility: hidden;
           opacity: 0;
+          width: 100vw !important;
+          height: 100vh !important;
+          max-width: 100vw;
+          max-height: 100vh;
         }
         .solid {
           clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
